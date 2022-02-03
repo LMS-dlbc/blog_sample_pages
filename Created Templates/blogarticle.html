@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
+    <link href="./mycss.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Source+Sans+Pro:400,700"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Beginning of the navigation bar -->
+    <nav>
+        <div class="navbarcontainter" id="nav">
+
+
+            <div class="navbarlist">
+                <ul class="navbarlist">
+                    <a><strong>Divij Vignesh</strong></a>
+                    <li style="display:inline-block">
+                        <a href="./index.html"></span></a>
+                    </li>
+                    <li style="display:inline-block">
+                        <a href="./index.html">Tech</a>
+                    </li>
+
+                    <li style="display:inline-block">
+                        <a href="./index.html">About</a>
+                    </li>
+                    <li style="display:inline-block">
+                        <a href="#Socials"><span>Socials</span></a>
+                    </li>
+
+                    <li style="border-style: solid;border-radius: 5px; border-color: #c6d1d0;">
+                        <a href="https://youtube.com/stupidcreativity" target="_blank">Youtube Channel</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Ending of nav bar -->
+
+    <!-- Header part -->
+    <div class="headercontainer"  >
+        <div class="headerleftdiv">
+            <p >
+                <a>Stories</a>
+            </p>
+            <h1 class="mainheading">How to setup NEO-6M using ESP32</h1>
+            <p>
+                This guide shows how to use the NEO-6M GPS module with the Arduino to get GPS data. GPS stands for
+                Global Positioning System
+                and can be used to determine position, time, and speed if you’re travelling.
+            </p>
+            <div>
+
+                <small>Divij Vignesh <span>A few hours ago &middot; 5 min.
+                        read</span>
+                </small>
+            </div>
+        </div>
+        <div class="headerrightdiv">
+            <img src="./assets/img/NEO-GPS-Arduino-thumbnail.jpg">
+
+
+        </div>
+
+    </div>
+    <!-- Ending of header part -->
+
+    <!-- Body part -->
+    <div class="bodycontainer">
+        <div class="bodycontainerleftdiv">
+            <h2>Contents:</h2>
+            
+            <ul>
+                
+                <li>
+                    <a href="#intro">Introduction</a>
+                </li>
+                <li>
+                    <a onclick="wheretobuy()">Where to buy</a>
+                </li>
+            </ul>
+            </ul>
+
+            <div>
+
+            </div>
+
+        </div>
+        <div class="bodycontainerrightdiv">
+
+            <article class="article" id="intro">
+                <h1 >Introduction to NEO-6M</h1>
+                <hr>
+                <p id="wheretobuy">
+                    The NEO-6M GPS module is also compatible with other microcontroller boards. To learn how to use the
+                    NEO-6M GPS module
+                    with the Raspberry Pi, you can read: Email Alert System on Location Change with Raspberry Pi and GPS
+                    Module.
+                </p>
+                <h1 >
+                    Where to buy?
+                </h1>
+                <p>
+                    You can get the NEO-6M GPS module for a price between $5 to $20. We recommend checking the NEO-6M
+                    GPS module page on Maker Advisor to compare
+                    the price in different stores and find the best one.
+                </p>
+                <h1>
+                    Pin Wiring
+                </h1>
+                <p>
+                    The NEO-6M GPS module has four pins: VCC, RX, TX, and GND. The module communicates with the Arduino
+                    via serial communication
+                    using the TX and RX pins, so the wiring couldn’t be simpler:
+                </p>
+                <h1>
+                    Schematics
+                </h1>
+                <p>
+                    Wire the NEO-6M GPS module to your Arduino by following the schematic below.
+                </p>
+                <image src="assets/img/NEO_6M_Arduino.png">
+                    <h1>Code:</h1>
+                    <pre>
+                    <code>
+
+    #include <spamn> <TinyGPS++ .h></span>
+    #include <SoftwareSerial.h>
+
+static const int RXPin = 4, TXPin = 3;
+static const uint32_t GPSBaud = 9600;
+
+// The TinyGPS++ object
+TinyGPSPlus gps;
+
+// The serial connection to the GPS device
+SoftwareSerial ss(RXPin, TXPin);
+
+void setup(){
+  Serial.begin(9600);
+  ss.begin(GPSBaud);
+}
+
+void loop(){
+  // This sketch displays information every time a new sentence is correctly encoded.
+  while (ss.available() > 0){
+    gps.encode(ss.read());
+    if (gps.location.isUpdated()){
+      Serial.print("Latitude= "); 
+      Serial.print(gps.location.lat(), 6);
+      Serial.print(" Longitude= "); 
+      Serial.println(gps.location.lng(), 6);
+    }
+  }
+}
+                </code>
+            </pre>
+            </article>
+
+
+        </div>
+
+    </div>
+    </div>
+    <!--body ends-->
+
+
+    <!-- comments section start -->
+    <!-- <div class="commentcontainer">
+        <div class="comments">
+            <hr>
+            <div class="commentname">
+
+                <table>
+                    <tr>
+                        <td>
+                            <h3>Player 1</h3>
+                        </td>
+                        <td>
+
+                            <h6>Jan '21</h6>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="commentcontent">
+                <p>It is a very good blog website done by me</p>
+
+            </div>
+            <hr>
+        </div>
+    </div> -->
+    <!-- comments sectione ends -->
+
+
+    <!-- Footer startin -->
+
+
+    <footer>
+
+        <div class="footercontainer" id="Socials">
+            <div class="footerleftdiv">
+
+                <div class="footercenterdiv">
+                    CONTACT ME @<br> <span>divijvignesh12@gmail.com</span>
+                </div>
+                <div class="footerrightdiv">
+                    Socials<br>
+                    <ul>
+                        <li>
+                            <a href="https://instagram.com/divij_2309" target="_blank">
+                                <image src="./assets/img/new-instagram-logo-white-border-icon-png-large.png" width=50px
+                                    height=50px>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/divij-vignesh-153b1a204/" target="_blank"><img
+                                    src="./assets/img/images.png" height="50px" width="50px"></a>
+                        </li>
+                        <li>
+                            <a href="https://youtube.com/stupidcreativity" target="_blank"><img
+                                    src="./assets/img/209bd859c265e7ffc4bfeb75877b23f7.png" height="50px"
+                                    width="50px"></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="footerdiv">
+                    <span><strong>Made by Divij</strong></span> 
+                </div> -->
+            </div>
+
+
+        </div>
+    </footer>
+    <script>
+        function wheretobuy(){
+            var elem = document.getElementById("wheretobuy");
+                elem.scrollIntoView();
+        }
+        window.onscroll = function () {
+            console.log(window.pageYOffset);
+            var navbar = document.getElementById('nav');
+            
+            var b=document.querySelector(".headercontainer");
+            var content = document.querySelector(".bodycontainerleftdiv");
+var header = document.querySelector(".bodycontainerleftdiv");
+
+            var head= header.offsetTop;
+            var top=navbar.offsetHeight;
+            var entire= b.offsetHeight;
+            var str = top.toString();
+            if (window.pageYOffset > 100 ) {
+                nav.classList.add("navbarlist1");
+            } 
+
+            else {
+                nav.classList.remove("navbarlist1");
+            }
+
+            console.log("Nav:"+top);
+            if (window.pageYOffset > head) {
+                content.classList.add("bodycontainerleftdiv1");
+
+                content.style.top = str + "px";
+                // document.querySelector(".bodycontainerleftdiv").style.top = "100px";
+            }
+            else {
+                content.classList.remove("bodycontainerleftdiv1");
+                
+            }
+            if(window.pageYOffset < entire ){ //cont+top
+                content.style.removeProperty("top");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
